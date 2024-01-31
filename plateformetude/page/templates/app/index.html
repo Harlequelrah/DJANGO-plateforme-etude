@@ -3,36 +3,68 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Plateforme ' Etude | {% block title %}{% endblock title %} </title>
-  <link rel='stylesheet' href="{% static 'owl.carousel.min.css'%}">
-  <link rel='stylesheet' href="{% static 'all.min.css'%}">
-  <link rel='stylesheet' href="{% static 'style.css'%}">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="shortcut icon" type="png" href="{%static 'icon/favicon.png'%}">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Comaptible" content="IE=edge">
+	<title>LearnEd</title>
+	<meta name="desciption" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+	<script type="text/javascript" src="{%static 'script.js' %}"> </script>
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<script>
+		$(window).on('scroll', function(){
+  			if($(window).scrollTop()){
+			$('nav').addClass('black');
+ 			 }else {
+			$('nav').removeClass('black');
+ 		 }
+		})
+	</script>
 </head>
 
 <body>
 
 
-  {% block main-content %}
-  {% endblock main-content %}
-  <footer class="container-fluid bg-success text-center p-2 mt-5 fixed-bottom "> Copyright by IAI Students | Realised by
-    ANIKA Engracia
-    DEGBOVI Maxime
-    N'SOUKPOE Collins
-    SENYO josiane
-    </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-  <script src="{% static 'owl.carousel.min.js' %}"></script>
-  <script src="{% static 'all.min.js' %}"></script>
-  <script src="{% static 'script.js' %}"></script>
+	{% block main-content %}
+
+
+	{% endblock main-content %}
+	<footer>
+		<div class="footer-container">
+			<div class="left-col">
+
+				<img src=" {%static 'icon/logo - Copy.png'%}" style="width: 200px;">
+				<div class="logo"></div>
+				<div class="social-media">
+					<a href="#"><img src="{% static 'icon\fb.png'%}"></a>
+					<a href="#"><img src="{% static 'icon\insta.png'%}"></a>
+					<a href="#"><img src="{% static 'icon\tt.png'%}"></a>
+					<a href="#"><img src="{% static 'icon\ytube.png'%}"></a>
+					<a href="#"><img src="{% static 'icon\linkedin.png'%}"></a>
+				</div><br><br>
+				<p class="rights-text">Copyright © 2021 Created By
+					ANIKA Engracia -
+					DEGBOVI Maxime -
+					N'SOUKPOE Collins -
+					SENYO josiane ,All Rights Reserved.</p>
+				<br>
+				<p><img src="{% static 'icon/location.png'%}">IAI University<br>59,Rue de la Koza,Nyékonakpoè</p><br>
+				<p><img src="{% static 'icon/phone.png'%}"> (00228) 22 20 47 008 <br><img src="{% static 'icon/mail.png'%}">&nbsp;
+					learnedonline9419@gmail.com</p>
+			</div>
+			<div class="right-col">
+				<h1 style="color: #fff">Our Newsletter</h1>
+				<div class="border"></div><br>
+				<p>Enter Your Email to get our News and updates.</p>
+				<form class="newsletter-form">
+					<input class="txtb" type="email" placeholder="Enter Your Email">
+					<input class="btn" type="submit" value="Submit">
+				</form>
+			</div>
+		</div>
+	</footer>
+
 </body>
 
 

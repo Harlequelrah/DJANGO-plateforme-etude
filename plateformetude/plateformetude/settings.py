@@ -121,9 +121,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 statique_app= 'page/static/app'
 STATICFILES_DIRS=[
-    statique_app/"css",
-    statique_app/"js",
-    statique_app/"image",
+  
+    statique_app+"/css",
+    statique_app+"/js",
+    statique_app+"/image",
 ]
 
 # Default primary key field type

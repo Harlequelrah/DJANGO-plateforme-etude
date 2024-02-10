@@ -83,7 +83,7 @@ DATABASES = {
     }
 }
 
-
+AUTH_USER_MODEL ='backend.models.Utilisateur'
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -121,7 +121,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 statique_app= 'page/static/app'
 STATICFILES_DIRS=[
-  
+
     statique_app+"/css",
     statique_app+"/js",
     statique_app+"/image",

@@ -4,12 +4,15 @@ from .models import Etudiant, Cours, Inscription, Professeur, Enseigner, Module,
 class EtudiantForm(forms.ModelForm):
     class Meta:
         model = Etudiant
-        fields = '__all__'  # Inclure tous les champs du modèle
+        fields = '__all__'
+
+
+
 
 class CoursForm(forms.ModelForm):
     class Meta:
         model = Cours
-        exclude = ['etudiants', 'professeurs']  # Exclure les champs many-to-many
+        exclude = ['etudiants', 'professeurs']
 
 class InscriptionForm(forms.ModelForm):
     class Meta:

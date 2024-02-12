@@ -1,12 +1,23 @@
 from django import forms
-from .models import Etudiant, Cours, Inscription, Professeur, Enseigner, Module, Contenir
+from .models import *
 
 class EtudiantForm(forms.ModelForm):
     class Meta:
         model = Etudiant
         fields = '__all__'
 
+class UserForm(forms.Form):
+    email = forms.EmailField(max_length=254)
+    password = forms.CharField(max_length=100, widget=forms.PasswordInput)
 
+
+
+
+
+class ProfesseurForm(forms.ModelForm):
+    class Meta:
+        model = Professeur
+        fields = '__all__'  # Inclure tous les champs du modèle
 
 
 class CoursForm(forms.ModelForm):
@@ -19,10 +30,7 @@ class InscriptionForm(forms.ModelForm):
         model = Inscription
         fields = '__all__'  # Inclure tous les champs du modèle
 
-class ProfesseurForm(forms.ModelForm):
-    class Meta:
-        model = Professeur
-        fields = '__all__'  # Inclure tous les champs du modèle
+
 
 class EnseignerForm(forms.ModelForm):
     class Meta:
@@ -38,3 +46,10 @@ class ContenirForm(forms.ModelForm):
     class Meta:
         model = Contenir
         fields = '__all__'  # Inclure tous les champs du modèle
+
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+        model = Feedback
+        fields = ['full_name', 'message']
+
+

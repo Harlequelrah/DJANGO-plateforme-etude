@@ -9,7 +9,13 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = '3dd40e8b0a9ab1'
+EMAIL_HOST_PASSWORD = 'f0a28cd93606ab'
+EMAIL_USE_TLS = True
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'page'
+    'page',
+    'backend',
+
 ]
 
 MIDDLEWARE = [
@@ -75,15 +83,19 @@ WSGI_APPLICATION = 'plateformetude.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'learned',
+        'USER': 'Harlequin',
+        'PASSWORD': "Quinlehar0179",
+        'HOST': 'localhost',  # Ou l'adresse IP de votre serveur MySQL
+        'PORT': '3310',  # Le port par défaut de MySQL
     }
 }
 
-AUTH_USER_MODEL ='backend.models.Utilisateur'
+
+# AUTH_USER_MODEL ='backend.Utilisateur'
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 

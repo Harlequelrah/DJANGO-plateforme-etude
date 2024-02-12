@@ -4,237 +4,224 @@
 {% block main-content %}
 
 <!-- Navigation Bar -->
-	<header id="header">
-		<nav>
-			<div class="logo"><img src="{% static 'icon/logo.png'%}" alt="logo"></div>
-			<ul>
-				<li><a class="active" href="">Home</a></li>
-				<li><a href="#portfolio_section">Portfolio</a></li>
-				
-				<li><a href="#services_section">Services</a></li>
-				{% comment %} <li><a href="#contactus_section">Contact</a></li> {% endcomment %}
-			</ul>
-			<div class="srch"><input type="text" class="search" placeholder="Search here..."><img src="{% static 'icon/search.png'%}" alt="search" onclick=slide()></div>
-			<a class="get-started" href="{% url 'login' %}">Get Started</a>
-			<img src="{% static 'icon/menu.png'%}" class="menu" onclick="sideMenu(0)" alt="menu">
-		</nav>
-		<div class="head-container">
-			<div class="quote">
-				<p>The beautiful thing about learning is that nobody can take it away from you</p>
-				<h5>Education is the process of facilitating learning, or the acquisition of knowledge, skills, values, beliefs, and habits. Educational methods include teaching, training, storytelling, discussion and directed research!</h5>
-				<div class="play">
-					<img src="{% static 'icon/play.png'%}" alt="play"><span><a href="https://www.youtube.com/watch?v=KFyrgDO1WXk" target="_blank">Watch Now</a></span>
-				</div>
-			</div>
-			<div class="svg-image">
-				<img src="{% static 'extra/svg1.jpg'%}" alt="svg">
-			</div>
+<header id="header">
+	<nav>
+		<div class="logo"><img src="{% static 'icon/logo.png'%}" alt="logo"></div>
+		<ul>
+			<li><a class="active" href="">Home</a></li>
+			<li><a href="#portfolio_section">Portfolio</a></li>
+			{% comment %} <li><a href="#feedBACK">Avis des utilisateurs</a></li> {% endcomment %}
+			<li><a href="#about_section">A Propos</a></li>
+			{% comment %} <li><a href="#contactus_section">Contact</a></li> {% endcomment %}
+
+
+
+
+		</ul>
+		<div class="srch"><input type="text" class="search" placeholder="Rechercher ..."><img
+				src="{% static 'icon/search.png'%}" alt="search" onclick=slide()></div>
+		<a class="get-started" href="{% url 'signup' %}">Rejoignez nous</a>
+
+		<a class="get-started" href="{% url 'login' %}">Connectez vous </a>
+		<img src="{% static 'icon/menu.png'%}" class="menu" onclick="sideMenu(0)" alt="menu">
+	</nav>
+	<div style="width:350px;height:50px;position:absolute;top:100px;left:150px;"> {% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+				<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}</div>
+
+	<div class="head-container">
+		<div class="quote">
+			<p>The beautiful thing about learning is that nobody can take it away from you</p>
+			<h5>L'éducation ouvre les portes de la découverte et du développement personnel. C'est un voyage passionnant où
+				l'on acquiert des connaissances, des compétences et des valeurs qui façonnent notre vision du monde. De
+				l'enseignement traditionnel aux récits captivants, chaque méthode éducative nous guide vers de nouveaux
+				horizons.!</h5>
 		</div>
-		<div class="side-menu" id="side-menu">
-			<div class="close" onclick="sideMenu(1)"><img src="{% static 'icon/close.png'%}" alt=""></div>
-			<div class="user">
-				<img src="{% static 'creator/roshan1.jpeg'%}" alt="Username">
-				<p>roshank9419</p>
-			</div>
-			<ul>
-				<li><a href="#about_section">About</a></li>
-				<li><a href="#portfolio_section">Portfolio</a></li>
-				<li><a href="#team_section">Team</a></li>
-				<li><a href="#services_section">Services</a></li>
-				<li><a href="#contactus_section">Contact</a></li>
-				<li><a href="#feedBACK">Feedback</a></li>
-			</ul>
+		<div class="svg-image">
+			<img src="{% static 'extra/svg1.jpg'%}" alt="svg">
 		</div>
-	</header>
+	</div>
+	<div class="side-menu" id="side-menu">
+		<div class="close" onclick="sideMenu(1)"><img src="{% static 'icon/close.png'%}" alt=""></div>
+		<div class="user">
+			<img src="{% static 'creator/roshan1.jpeg'%}" alt="Username">
+			<p>roshank9419</p>
+		</div>
+		<ul>
+			<li><a href="#about_section">A Propos</a></li>
+			<li><a href="#portfolio_section">Portfolio</a></li>
+			<li><a href="#team_section">Team</a></li>
+			<li><a href="#contactus_section">Contact</a></li>
+			<li><a href="#feedBACK">Feedback</a></li>
+		</ul>
+	</div>
+</header>
 
 
 <!-- Some Popular Subjects -->
-	<div class="title">
-		<span>Popular Subjects on LearnEd</span>
-	</div>
-	<br><br>
-	<div class="course">
-		<center><div class="cbox">
-		<div class="det"><a href="#"><img src="{%static 'courses/book.png'%}">JEE Preparation</a></div>
-		<div class="det"><a href="#"><img src="{%static 'courses/d1.png'%}">GATE Preparation</a></div>
-		<div class="det"><a href="#"><img src="{%static 'courses/paper.png'%}">Sample Papers</a></div>
-		<div class="det"><a href="#"><img src="{%static 'courses/d1.png'%}">Daily Quiz</a></div>
-		</div></center>
+{% comment %} <div class="title">
+	<span>Popular Subjects on LearnEd</span>
+</div>
+<br><br>
+<div class="course">
+	<center>
 		<div class="cbox">
+			<div class="det"><a href="#"><img src="{%static 'courses/book.png'%}">JEE Preparation</a></div>
+			<div class="det"><a href="#"><img src="{%static 'courses/d1.png'%}">GATE Preparation</a></div>
+			<div class="det"><a href="#"><img src="{%static 'courses/paper.png'%}">Sample Papers</a></div>
+			<div class="det"><a href="#"><img src="{%static 'courses/d1.png'%}">Daily Quiz</a></div>
+		</div>
+	</center>
+	<div class="cbox">
 		<div class="det"><a href="#"><img src="{% static 'courses/computer.png'%}">Computer Courses</a></div>
 		<div class="det"><a href="#"><img src="{% static 'courses/data.png'%}">Data Structures</a></div>
 		<div class="det"><a href="#"><img src="{% static 'courses/algo.png'%}">Algorithm</a></div>
 		<div class="det det-last"><a href="#s"><img src="{% static 'courses/projects.png'%}">Projects</a></div>
-		</div>
-	</div>
-
-
-<!-- ABOUT -->
-	<div class="diffSection" id="about_section">
-		<center><p style="font-size: 50px; padding: 100px">About</p></center>
-		<div class="about-content">
-				<div class="side-image">
-					<img class="sideImage" src="{% static 'extra/e3.jpg' %}" />
-				</div>
-				<div class="side-text">
-					<h2>What you think about us ?</h2>
-					<p>Education is the process of facilitating learning, or the acquisition of knowledge, skills, values, beliefs, and habits. Educational methods include teaching, training, storytelling, discussion and directed research.<br> Educational website can include websites that have games, videos or topic related resources that act as tools to enhance learning and supplement classroom teaching. These websites help make the process of learning entertaining and attractive to the student, especially in today's age. <br>Using HTML(HyperText Markup Language), CSS(Cascading Style Sheet), JavaScript, we can make learning more easier and in a interesting way.</p>
-				</div>
-		</div>
-	</div>
-
-
-<!-- PORTFOLIO -->
-	<div class="diffSection" id="portfolio_section">
-		<center><p style="font-size: 50px; padding: 100px; padding-bottom: 40px;">Portfolio</p></center>
-		<div class="content">
-			<p>
-				“Education is the passport to the future, for tomorrow belongs to those who prepare for it today.” “Your attitude, not your aptitude, will determine your altitude.” “If you think education is expensive, try ignorance.” “The only person who is educated is the one who has learned how to learn …and change.”
-			</p>
-		</div>
-	</div>
-	<div class="extra">
-		<p>We're increasing this data every year</p>
-		<div class="smbox">
-		<span><center><div class="data">154</div><div class="det">Enrolled Students</div></center></span>
-		<span><center><div class="data">62</div><div class="det">Total Courses</div></center></span>
-		<span><center><div class="data">56</div><div class="det">Placed Students</div></center></span>
-		<span><center><div class="data">27</div><div class="det">Total Projects</div></center></span>
-		</div>
-	</div>
-
-
-
-
-
-<!-- SERVICES -->
-	<div class="service-swipe">
-		<div class="diffSection" id="services_section">
-		<center><p style="font-size: 50px; padding: 100px; padding-bottom: 40px; color: #fff;">Services</p></center>
-		</div>
-		<a href="#"><div class="s-card"><img src="{% static 'icon/computer-courses.png'%}"><p>Free Online Computer Courses</p></div></a>
-		<a href="#"><div class="s-card"><img src="{% static 'icon/brainbooster.png'%}"><p>Building Concepts for Competitive Exams</p></div></a>
-		<a href="#"><div class="s-card"><img src="{% static 'icon/online-tutorials.png'%}"><p>Online Video Lectures</p></div></a>
-		<a href="#"><div class="s-card"><img src="{% static 'icon/papers.jpg'%}"><p>Sample Papers of Various Competitive Exams</p></div></a>
-		<a href="#"><div class="s-card"><img src="{% static 'icon/p3.png'%}"><p>Performance and Ranking Report</p></div></a>
-		<a href="#"><div class="s-card"><img src="{% static 'icon/discussion.png'%}"><p>Discussion with Our Tutors & Mentors</p></div></a>
-		<a href="#"><div class="s-card"><img src="{% static 'icon/q1.png'%}"><p>Daily Brain Teasing Questions to Improve IQ</p></div></a>
-		<a href="#"><div class="s-card"><img src="{% static 'icon/help.png'%}"><p>24x7 Online Support</p></div></a>
-	</div>
-
-<!-- Reviews by Students -->
-{% comment %} <div id="makeitfull">
-	<a href="#review_section"><img src="{% static 'icon/makeitfull.png' %}"></a>
-</div>
-<div class="review">
-	<div class="diffSection" id="review_section">
-		<center><p style="font-size: 40px; padding: 100px; padding-bottom: 40px; color: #2E3D49;">What the Students Say About Us?</p></center>
-	</div>
-	<div class="rev-container">
-		<div class="rev-card">
-			<div class="identity">
-				<img src="{% static 'creator/humanNotExist1.jpg'%}"><p>Sophie Daniel</p>
-				<h6>Java</h6>
-				<div class="rating"><img src="{% static 'icon/star.png'%}"><img src="{% static 'icon/star.png'%}"><img src="{% static 'icon/star.png'%}"><img src="{% static 'icon/star.png'%}"><img src="{% static 'icon/star.png'%}"></div>
-			</div>
-			<div class="rev-cont">
-				<p id="title">Review:</p>
-				<p id="content">
-					I did Java Fundamenetal course with Rishab Sir. It was a great experience. The brain teasers and assignments, actually the whole lot of content was really good. Some problems were challenging yet interesting. Was explained very well where ever I stuck...
-				</p>
-			</div>
-		</div>
-		<div class="rev-card">
-			<div class="identity">
-				<img src="{%static 'creator/humanNotExist2.jpg'%}"><p>Clayton Clair</p>
-				<h6>C/C++</h6>
-				<div class="rating"><img src="{% static 'icon/star.png' %}"><img src="{% static 'icon/star.png' %}"><img src="{% static 'icon/star.png' %}"><img src="{% static 'icon/star.png' %}"><img src="{% static 'icon/star.png' %}"></div>
-			</div>
-			<div class="rev-cont">
-				<p id="title">Review:</p>
-				<p id="content">
-					When I was watching "Dear Zindagi", I could relate Sharukh Khan to Arnav Bhaiya. The way Sharukh Khan was giving life lessons to Alia Bhatt, in the same way Arnav Bhaiya will give coding life lessons which will guide you throughout your code life...
-				</p>
-			</div>
-		</div>
-		<div class="rev-card">
-			<div class="identity">
-				<img src="{% static 'creator/humanNotExist3.jpg'%}"><p>Devyn Sethi</p>
-				<h6>JEE</h6>
-				<div class="rating"><img src="{% static 'icon/star.png' %}"><img src="{% static 'icon/star.png' %}"><img src="{% static 'icon/star.png' %}"><img src="{% static 'icon/star.png' %}"><img src="{% static 'icon/star.png' %}"></div>
-			</div>
-			<div class="rev-cont">
-				<p id="title">Review:</p>
-				<p id="content">
-					LearnEd was an amazing experience for me. I belong to electronics department and had a little experience in coding but I think it has helped me think things through in a much more analytical manner. Coding is important no matter which branch you are in. It gives you a better understanding about how to approach a problem...
-				</p>
-			</div>
-		</div>
-		<div class="rev-card">
-			<div class="identity">
-				<img src="{% static 'creator/humanNotExist4.jpg'%}"><p>Rylee Phillips</p>
-				<h6>Python</h6>
-				<div class="rating"><img src="{% static 'icon/star.png' %}"><img src="{% static 'icon/star.png' %}"><img src="{% static 'icon/star.png' %}"><img src="{% static 'icon/star.png' %}"><img src="{% static 'icon/star.png' %}"></div>
-			</div>
-			<div class="rev-cont">
-				<p id="title">Review:</p>
-				<p id="content">
-					This was my first complete course at coding blocks. I attended the Python course in Winter 2020 and loved it which made me join the full course. Shubham bhaiya and Ayush Bhaiya(TA) have good knowledge about the field and were very helpful in making us understand the concepts. I would certainly recommend this to anyone...
-				</p>
-			</div>
-		</div>
 	</div>
 </div> {% endcomment %}
 
-{% comment %} <!-- CONTACT US -->
-	<div class="diffSection" id="contactus_section">
-		<center><p style="font-size: 50px; padding: 100px">Contact Us</p></center>
-		<div class="csec"></div>
-		<div class="back-contact">
-			<div class="cc">
-			<form action="mailto:roshank9419@gmail.com" method="post" enctype="text/plain">
-				<label>First Name <span class="imp">*</span></label><label style="margin-left: 185px">Last Name <span class="imp">*</span></label><br>
-				<center>
-				<input type="text" name="" style="margin-right: 10px; width: 175px" required="required"><input type="text" name="lname" style="width: 175px" required="required"><br>
-				</center>
-				<label>Email <span class="imp">*</span></label><br>
-				<input type="email" name="mail" style="width: 100%" required="required"><br>
-				<label>Message <span class="imp">*</span></label><br>
-				<input type="text" name="message" style="width: 100%" required="required"><br>
-				<label>Additional Details</label><br>
-				<textarea name="addtional"></textarea><br>
-				<button type="submit" id="csubmit">Send Message</button>
-			</form>
+
+<!-- ABOUT -->
+<div class="diffSection" id="about_section">
+	<center>
+		<p style="font-size: 50px; padding: 100px">A Propos</p>
+	</center>
+	<div class="about-content">
+		<div class="side-image">
+			<img class="sideImage" src="{% static 'extra/e3.jpg' %}" />
+		</div>
+		<div class="side-text">
+			<h2>Quelle est votre opinion à notre sujet ?</h2>
+			<p>L'éducation est le processus visant à faciliter l'apprentissage ou l'acquisition de connaissances, de
+				compétences, de valeurs, de croyances et d'habitudes. Les méthodes éducatives comprennent l'enseignement, la
+				formation, la narration, la discussion et la recherche dirigée.<br> Les sites Web éducatifs peuvent inclure des
+				sites Web proposant des jeux, des vidéos ou des ressources thématiques qui servent d'outils pour améliorer
+				l'apprentissage et compléter l'enseignement en classe. Ces sites Web contribuent à rendre le processus
+				d’apprentissage divertissant et attrayant pour l’étudiant, surtout à l’époque actuelle. <br>En utilisant HTML
+				(HyperText Markup Language), CSS (Cascading Style Sheet), JavaScript, nous pouvons rendre l'apprentissage plus
+				facile et d'une manière intéressante</p>
+		</div>
+	</div>
+</div>
+
+
+<!-- PORTFOLIO -->
+<div class="diffSection" id="portfolio_section">
+	<center>
+		<p style="font-size: 50px; padding: 100px; padding-bottom: 40px;">Portfolio</p>
+	</center>
+	<div class="content">
+		<p>
+			"L'éducation est le passeport pour l'avenir, car demain appartient à ceux qui se préparent aujourd'hui."</br>
+			"Votre attitude, et non pas votre aptitude, déterminera votre altitude."</br> "Si vous pensez que l'éducation
+			coûte cher, essayez l'ignorance."</br> "La seule personne qui est éduquée est celle qui a appris à apprendre... et
+			à changer."
+		</p>
+	</div>
+</div>
+<div class="extra">
+	<p>Nous enrichissons continuellement ces données année après année.</p>
+	<div class="smbox">
+		<span>
+			<center>
+				<div class="data">154</div>
+				<div class="det">Enrolled Students</div>
+			</center>
+		</span>
+		<span>
+			<center>
+				<div class="data">62</div>
+				<div class="det">Total Courses</div>
+			</center>
+		</span>
+		<span>
+			<center>
+				<div class="data">56</div>
+				<div class="det">Placed Students</div>
+			</center>
+		</span>
+		<span>
+			<center>
+				<div class="data">27</div>
+				<div class="det">Total Projects</div>
+			</center>
+		</span>
+	</div>
+</div>
+
+
+<!-- Reviews by Students -->
+<div id="makeitfull">
+	<a href="#review_section"><img src="{% static 'icon/makeitfull.png'%}"></a>
+</div>
+<div class="review">
+	<div class="diffSection" id="review_section">
+		<center>
+			<p style="font-size: 40px; padding: 100px; padding-bottom: 40px; color: #2E3D49;">Les retours de nos étudiants</p>
+		</center>
+	</div>
+	{% for feed in feedback %}
+	<div class="rev-container">
+		<div class="rev-card">
+			<div class="identity">
+				<p>{{feed.full_name}}</p>
+			</div>
+			<div class="rev-cont">
+				<p id="title">Commentaire:</p>
+				<p id="content">
+                {{feed.message}}
+				</p>
 			</div>
 		</div>
-	</div> {% endcomment %}
 
-
-<!-- FEEDBACK -->
+	</div>
+	{% endfor %}
+	{% block contact%}
+	{%endblock%}
+	<!-- FEEDBACK -->
 	<div class="title2" id="feedBACK">
-		<span>Give Feedback</span>
+		<span>Partager vos impressions</span>
 		<div class="shortdesc2">
-			<p>Please share your valuable feedback to us</p>
+			<p>N'hésitez pas à nous faire part de vos précieux commentaires.</p>
 		</div>
 	</div>
 
 	<div class="feedbox">
 		<div class="feed">
-			<form action="mailto:roshank9419@gmail.com" method="post" enctype="text/plain">
-				<label>Your Name</label><br>
-				<input type="text" name="" class="fname" required="required"><br>
-				<label>Email</label><br>
-				<input type="email" name="mail" required="required"><br>
-				<label>Additional Details</label><br>
-				<textarea name="addtional"></textarea><br>
-				<button type="submit" id="csubmit">Send Message</button>
+			<form method="post" validate>
+				{% csrf_token %}
+				{% if form.errors.full_name %}
+          <ul>
+            {% for error in form.errors.full_name %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+		{% if form.errors.message %}
+		<ul>
+		  {% for error in form.errors.message %}
+			<li>{{ error }}</li>
+		  {% endfor %}
+		</ul>
+	  {% endif %}
+				{{ form.as_p }}
+				<button type="submit" id="csubmit" name="feedbacksub">Send Message</button>
 			</form>
 		</div>
 	</div>
 
-<!-- Sliding Information -->
-	<marquee style="background: linear-gradient(to right, #FA4B37, #DF2771); margin-top: 50px;" direction="left" onmouseover="this.stop()" onmouseout="this.start()" scrollamount="20"><div class="marqu">“Education is the passport to the future, for tomorrow belongs to those who prepare for it today.” “Your attitude, not your aptitude, will determine your altitude.” “If you think education is expensive, try ignorance.” “The only person who is educated is the one who has learned how to learn …and change.”</div></marquee>
+	<!-- Sliding Information -->
+	<marquee style="background: linear-gradient(to right, #FA4B37, #DF2771); margin-top: 50px;" direction="left"
+		onmouseover="this.stop()" onmouseout="this.start()" scrollamount="20">
+		<div class="marqu">"L'éducation est le passeport pour l'avenir, car demain appartient à ceux qui se préparent
+			aujourd'hui." "Votre attitude, et non pas votre aptitude, déterminera votre altitude." "Si vous pensez que
+			l'éducation coûte cher, essayez l'ignorance." "La seule personne qui est éduquée est celle qui a appris à
+			apprendre... et à changer."”</div>
+	</marquee>
 
-<!-- FOOTER -->
-{% endblock main-content%}
-
+	<!-- FOOTER -->
+	{% endblock main-content%}

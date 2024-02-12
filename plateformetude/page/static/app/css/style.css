@@ -23,6 +23,51 @@ header {
 .black {
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
+
+.errorlist { margin-bottom: -10px }
+.messages {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+}
+
+.messages li {
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+.messages li.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.messages li.error {
+    background-color: #f2dede;
+    color: #a94442;
+}
+
+.messages li.info {
+    background-color: #d9edf7;
+    color: #31708f;
+}
+
+.messages li.warning {
+    background-color: #fcf8e3;
+    color: #8a6d3b;
+}
+.input-field
+{
+	width: 100%;
+	padding: 10px 0;
+	margin: 5px 0;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+	border-bottom: 1px solid rgba(0,0,0,0.4);
+	outline: none;
+	background: transparent;
+	color: rgba(0,0,0);
+}
 nav {
 	padding-top: 20px;
 	padding-bottom: 20px;
@@ -261,6 +306,8 @@ a, button {
 	font-family: cursive;
 	z-index: -9;
 }
+
+
 .smbox {
 	display: flex;
 	flex-wrap: wrap;
@@ -611,7 +658,7 @@ form textarea {
 .rev-container .rev-card {
 	/*overflow: hidden;*/
 	width: 550px;
-	height: 240px;
+	height: 140px;
 	margin-bottom: 40px;
 	background: #fff;
 	display: flex;
@@ -697,10 +744,11 @@ form textarea {
 	background-size: cover;
 	padding: 50px 80px;
 	background-attachment: fixed;
+
 }
 .feed {
 	width: 800px;
-	height: 400px;
+	height: 310px;
 	position: relative;
 	border-radius: 10px;
 	justify-content: center;

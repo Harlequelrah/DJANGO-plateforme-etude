@@ -49,6 +49,9 @@ function scrollAppear() {
   var w = document.getElementById("other");
 
   function register() {
+    var formBox = document.getElementById("registrationFormBox");
+    formBox.classList.add("expanded");
+    alert("b");
     x.style.left = "-400px";
     y.style.left = "50px";
     z.style.left = "110px";
@@ -58,6 +61,7 @@ function scrollAppear() {
   }
 
   function login() {
+
     x.style.left = "50px";
     y.style.left = "450px";
     z.style.left = "0px";
@@ -68,11 +72,11 @@ function scrollAppear() {
 
   // CheckBox Function
   function goFurther(){
-    if (document.getElementById("chkAgree").checked == true) {
-      document.getElementById('btnSubmit').style = 'background: linear-gradient(to right, #FA4B37, #DF2771);';
+    if (document.getElementsByClassName("chkAgree").checked == true) {
+      document.getElementsById('btnSubmit').style = 'background: linear-gradient(to right, #FA4B37, #DF2771);';
     }
     else{
-      document.getElementById('btnSubmit').style = 'background: lightgray;';
+      document.getElementsById('btnSubmit').style = 'background: lightgray;';
     }
   }
 
@@ -81,39 +85,7 @@ function scrollAppear() {
   }
 
   // QUIZ Page
-  function quizt(frame) {
-    document.getElementById('f1').style='display: none;';
-    document.getElementById('f2').style='display: none;';
-    document.getElementById('f3').style='display: none;';
-    document.getElementById('f4').style='display: none;';
-    document.getElementById('f5').style='display: none;';
-    document.getElementById('f6').style='display: none;';
-    document.getElementById('f7').style='display: none;';
-    document.getElementById('f8').style='display: none;';
-    document.getElementById('f9').style='display: none;';
-    document.getElementById('f10').style='display: none;';
-    document.getElementById('f11').style='display: none;';
-    if(frame == 1) document.getElementById('f1').style = 'display: block';
-    else if(frame == 2) document.getElementById('f2').style = 'display: block';
-    else if(frame == 3) document.getElementById('f3').style = 'display: block';
-    else if(frame == 4) document.getElementById('f4').style = 'display: block';
-    else if(frame == 5) document.getElementById('f5').style = 'display: block';
-    else if(frame == 6) document.getElementById('f6').style = 'display: block';
-    else if(frame == 7) document.getElementById('f7').style = 'display: block';
-    else if(frame == 8) document.getElementById('f8').style = 'display: block';
-    else if(frame == 9) document.getElementById('f9').style = 'display: block';
-    else if(frame == 10) document.getElementById('f10').style = 'display: block';
-    else if(frame == 11) document.getElementById('f11').style = 'display: block';
-    else alert('error');
-  }
 
-  function startquiz() {
-    document.getElementById('title').style = 'display: none;';
-
-    document.getElementById('panel').style = 'display: inline-flex;';
-    document.getElementById('left').style = 'display: block;';
-    document.getElementById('right').style = 'display: block;';
-  }
   function searchdisplay() {
     document.getElementById('searchpanel').style.display="block";
   }
@@ -166,3 +138,6 @@ function scrollAppear() {
     }
     side++;
   }
+
+
+

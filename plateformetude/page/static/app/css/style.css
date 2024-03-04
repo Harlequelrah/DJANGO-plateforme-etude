@@ -417,10 +417,11 @@ a, button {
 	font-family: cursive;
 	text-decoration: none;
 }
-.cbox .det a:hover {
+.cbox .det a:hover,.home {
 	background: linear-gradient(to right, #FA4B37, #DF2771);
 	color: white;
 }
+
 .cbox .det a:hover img{
 	filter: brightness(100);
 }

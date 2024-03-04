@@ -38,44 +38,44 @@ class Cours(models.Model):
     libelle = models.CharField(max_length=50,null=True)
     contenue_texte = models.TextField(null=True)
     urls = models.TextField(null=True)
-    etudiants = models.ManyToManyField(Etudiant, related_name='cours')
-    professeurs = models.ManyToManyField(Professeur, related_name='cours')
+    modules= models.ManyToManyField('Module', related_name='modules_cours')
+    # etudiants = models.ManyToManyField(Etudiant, related_name='cours')
+    # professeurs = models.ManyToManyField(Professeur, related_name='cours')
     def get_urls_list(self):
         return [url.strip() for url in self.urls.split(',') if url.strip()]
+    def __str__(self):
+        return f"{self.titre}"
+
+class Module(models.Model):
+    nom = models.CharField(max_length=20)
+    libelle = models.CharField(max_length=30)
+    cours = models.ManyToManyField(Cours, related_name='cours_modules')
     def __str__(self):
         return f"{self.nom}"
 
 
-class Inscription(models.Model):
+
+
+class Enseigner(models.Model):
     id_Session = models.IntegerField()
+    professeur = models.ForeignKey(Professeur, on_delete=models.CASCADE)
+    cours = models.ForeignKey(Cours, on_delete=models.CASCADE)
+    session_Debut = models.DateField()
+    session_Fin = models.DateField()
+    volume_Horaire = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(60)])
+
+
+class Inscription(models.Model):
+    id_Session = models.ForeignKey(Enseigner,on_delete=models.CASCADE)
     id_etudiant = models.ForeignKey(Etudiant, on_delete=models.CASCADE)
     id_cours = models.ForeignKey(Cours, on_delete=models.CASCADE)
     date_Inscription = models.DateField()
     status = models.CharField(choices=InscriptionStatuts.choices,max_length=25,default=InscriptionStatuts.EN_COURS)
 
 
-
-class Enseigner(models.Model):
-    id_professeur = models.ForeignKey(Professeur, on_delete=models.CASCADE)
-    id_cours = models.ForeignKey(Cours, on_delete=models.CASCADE)
-    session_Debut = models.DateField()
-    session_Fin = models.DateField()
-    volume_Horaire = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(60)])
-    def clean(self):
-        super().clean()
-        if self.session_Debut and self.session_Fin and self.session_Debut >= self.session_Fin:
-            raise ValidationError("La date de début de session doit être antérieure à la date de fin de session.")
-
-class Module(models.Model):
-    nom = models.CharField(max_length=20)
-    libelle = models.CharField(max_length=30)
-    cours = models.ManyToManyField(Cours, related_name='modules')
-    def __str__(self):
-        return f"{self.nom}"
-
-class Contenir(models.Model):
-    id_cours = models.ForeignKey(Cours, on_delete=models.CASCADE)
-    id_module = models.ForeignKey(Module, on_delete=models.CASCADE)
+# class Contenir(models.Model):
+#     id_cours = models.ForeignKey(Cours, on_delete=models.CASCADE)
+#     id_module = models.ForeignKey(Module, on_delete=models.CASCADE)
 
 
 class Feedback(models.Model):
@@ -83,5 +83,6 @@ class Feedback(models.Model):
     message = models.TextField()
     def __str__(self):
         return f"{self.full_name}"
+
 
 

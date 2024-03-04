@@ -11,6 +11,18 @@ class ProfesseurAdmin(admin.ModelAdmin):
 class FeedbackAdmin(admin.ModelAdmin):
     list_display=('full_name','message')
 
+class ModuleAdmin(admin.ModelAdmin):
+    list_display=('nom','libelle')
+
+class CoursAdmin(admin.ModelAdmin):
+    list_display=('titre','libelle')
+
+class EnseignerAdmin(admin.ModelAdmin):
+    list_display=('id_Session','session_Debut','session_Fin','volume_Horaire')
+
 admin.site.register(Etudiant,EtudiantAdmin)
 admin.site.register(Professeur,ProfesseurAdmin)
 admin.site.register(Feedback,FeedbackAdmin)
+admin.site.register(Cours,CoursAdmin)
+admin.site.register(Module,ModuleAdmin)
+admin.site.register(Enseigner,EnseignerAdmin)

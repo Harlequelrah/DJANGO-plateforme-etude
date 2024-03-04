@@ -8,6 +8,8 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
+
+
 """
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
@@ -56,15 +58,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 
+]
+# X_FRAME_OPTIONS = 'ALLOWALL'
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 ROOT_URLCONF = 'plateformetude.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            'page/templates/app',
+            'page/templates',
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -95,7 +99,7 @@ DATABASES = {
 }
 
 
-# AUTH_USER_MODEL ='backend.Utilisateur'
+# AUTH_USER_MODEL ='backend.User'
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 

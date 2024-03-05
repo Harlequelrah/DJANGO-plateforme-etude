@@ -5,6 +5,7 @@ from .enums import *
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django import forms
 from django.contrib.auth.hashers import make_password
+from django.utils import timezone
 
 
 
@@ -41,8 +42,8 @@ class Cours(models.Model):
     modules= models.ManyToManyField('Module', related_name='modules_cours')
     # etudiants = models.ManyToManyField(Etudiant, related_name='cours')
     # professeurs = models.ManyToManyField(Professeur, related_name='cours')
-    def get_urls_list(self):
-        return [url.strip() for url in self.urls.split(',') if url.strip()]
+    def get_urls(self):
+        return [url.strip() for url in self.urls.split() if url.strip()]
     def __str__(self):
         return f"{self.titre}"
 
@@ -66,10 +67,10 @@ class Enseigner(models.Model):
 
 
 class Inscription(models.Model):
-    id_Session = models.ForeignKey(Enseigner,on_delete=models.CASCADE)
-    id_etudiant = models.ForeignKey(Etudiant, on_delete=models.CASCADE)
-    id_cours = models.ForeignKey(Cours, on_delete=models.CASCADE)
-    date_Inscription = models.DateField()
+    id_Session = models.IntegerField()
+    etudiant = models.ForeignKey(Etudiant, on_delete=models.CASCADE)
+    cours = models.ForeignKey(Cours, on_delete=models.CASCADE)
+    date_Inscription = models.DateField(default=timezone.now)
     status = models.CharField(choices=InscriptionStatuts.choices,max_length=25,default=InscriptionStatuts.EN_COURS)
 
 

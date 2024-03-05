@@ -7,6 +7,7 @@ from .enums import Universite
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 
 
@@ -220,8 +221,22 @@ def signup(request,*args,**kwargs):
 
     return  render(request,"signup.html",{})
 
-def cours(request,*args,**kwargs):
-    return render(request,"cours.html",{})
+def cours(request,etudiant_id,*args,**kwargs):
+    modules=Module.objects.all()
+    return render(request,"cours.html",{'modules':modules,'etudiant_id':etudiant_id})
+
+def coursdetail(request,etudiant_id,cours_id,*args,**kwargs):
+    cours=get_object_or_404(Cours,id=cours_id)
+    enseigners = Enseigner.objects.filter(cours=cours, session_Debut__lte=timezone.now(), session_Fin__gte=timezone.now()).all()
+    etudiant=get_object_or_404(Etudiant,id=etudiant_id)
+    if request.method=='POST':
+        form=(request.POST)
+        id_Session=form.get('id_Session')
+        id_Session=int(id_Session)
+        inscription=Inscription.objects.create(id_Session=id_Session,etudiant=etudiant,cours=cours)
+        messages.success(request,"Votre inscription s est déroulée a merveille")
+        return redirect("espaceEtudiant",etudiant_id)
+    return render(request,"coursdetail.html",{'etudiant_id':etudiant_id,'cours':cours,'enseigners':enseigners})
 
 def signupEtudiant(request,*args,**kwargs):
     universites = Universite.choices

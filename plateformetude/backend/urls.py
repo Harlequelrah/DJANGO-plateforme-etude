@@ -20,6 +20,7 @@ urlpatterns = [
     path('espaceEtudiant/<int:etudiant_id>',espaceEtudiant,name="espaceEtudiant"),
     path('espaceProfesseur/<int:professeur_id>/',espaceProfesseur,name="espaceProfesseur"),
     path('creation/Cours/',creationCours,name="creationCours"),
-    path('cours/',cours,name="cours")
+    path('cours/<int:etudiant_id>/',cours,name="cours"),
+    path('cours/<int:etudiant_id>/<int:cours_id>/',coursdetail,name="coursdetail"),
 
 ]

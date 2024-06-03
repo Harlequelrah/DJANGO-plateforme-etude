@@ -1,0 +1,7 @@
+{% extends "choixUtilisateur.html" %}
+{% load static %}
+
+{% block lien%}
+<a href="{% url 'loginEtudiant' %}"><button type="button" class="toggle-btn" id="studentBtn"style="color: #fff;">Etudiant</button></a>
+<a href="{% url 'loginProfesseur' %}"><button type="button" class="toggle-btn" id="teacherBtn" >Professeur</button></a>
+{% endblock %}

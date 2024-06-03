@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+	<link rel="shortcut icon" type="png" href="{% static 'icon/favicon.png' %}">
+	<title>Ajout d un nouveau module</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'loginstyles.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+	<div class="form-box"  style="height:350px;">
+		<h2
+			style="text-align:center;color:rgba(0,0,0);border-radius:5px;margin-top:30px;text-decoration:underline;background: linear-gradient(to right, #FA4B37, #DF2771)">
+			Formulaire de Creation d un nouveau module</h2>
+            <div style=""> {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                        {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+		<form class="input-group" method="post" style="margin-left:60px;" validate>
+			{% csrf_token %}
+			<input type="text" name="nom" class="input-field" placeholder="Titre du module " required="required">
+			{% if form.errors.nom %}
+			<ul>
+				{% for error in form.errors.nom%}
+				<li>{{error}}</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+
+			<input type="text" name="libelle" class="input-field" placeholder="libelle du module" required="required">
+			{% if form.errors.libelle %}
+			<ul>
+				{% for error in form.errors.libelle %}
+				<li>{{error}}</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			<button type="submit" id="btnSubmit" class="submit-btn reg-btn" style="margin-top:10px;margin-left:5px;">Enregistrer</button>
+		</form>
+	</div>
+	<script type="text/javascript" src="{% static 'script.js' %}"></script>
+</body>
+
+</html>

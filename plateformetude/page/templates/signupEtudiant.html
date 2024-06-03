@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+  <link rel="shortcut icon" type="png" href="{% static 'icon/favicon.png'%}">
+  <title>SignUp</title>
+  <link rel="stylesheet" type="text/css" href="{%static 'loginstyles.css'%}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- It will redirect to the Home Page after submitting the form -->
+
+  <style>
+    input[type="date"]::before {
+      content: "date de naissance ex : ";
+      /* Texte par défaut à afficher */
+      color: rgba(0, 0, 0, 0.7);
+      /* Couleur du texte par défaut */
+      font-style: italic;
+      /* Style du texte par défaut */
+    }
+
+    .expanded {
+      height: 660px;
+      /* ou toute autre valeur de hauteur souhaitée */
+      transition: height 0.5s ease;
+      /* ajoutez une transition pour une animation fluide */
+      width: 400px;
+
+    }
+
+    #teacherBtn:focus {
+      background-color: beige;
+    }
+
+    #teacherBtn {
+      bottom: 35px;
+      left: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-box expanded" id="registrationFormBox">
+    <div class="button-box" style="height:35px">
+      <div id="btn"></div>
+      <button type="button" class="toggle-btn" id="studentBtn" style="color: #fff;">Etudiant</button>
+      <a href="{% url 'signupProfesseur' %}"><button type="button" class="toggle-btn"
+          id="teacherBtn">Professeur</button></a>
+    </div>
+    <div class="social-icons">
+      <img src="{% static 'icon/fb2.png'%}">
+      <img src="{% static 'icon/insta2.png'%}">
+      <img src="{% static 'icon/tt2.png'%}">
+    </div>
+    <form method="post" style="position:absolute;left:80px;" class="input-group" validate>
+      {% csrf_token %}
+      <input type="text" class="input-field" placeholder="Entrer votre nom" name="nom" required="required">
+      {% if etudiant.errors.nom %}
+      <ul>
+        {% for error in etudiant.errors.nom %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <input type="text" class="input-field" placeholder="Entrer votre prenom" name="prenom" required="required">
+      {% if etudiant.errors.prenom %}
+      <ul>
+        {% for error in etudiant.errors.prenom %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <input type="email" class="input-field" placeholder="Entrer votre email" required="required" name="email">
+      {% if etudiant.errors.email %}
+      <ul>
+        {% for error in etudiant.errors.email %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <input type="password" class="input-field" placeholder="Entrer votre mot de passe" name="password"
+        required="required">
+      <input type="password" class="input-field" placeholder="Confirmer votre mot de passe " name="password"
+        required="required">
+      {% if etudiant.errors.password %}
+      <ul>
+        {% for error in etudiant.errors.password %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <input type="date" class="input-field" name="date_naissance">
+      {% if etudiant.errors.date_naissance %}
+      <ul>
+        {% for error in etudiant.errors.date_naissance %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% comment %} <label for="universite_provenance"></label> Universite de provenance{% endcomment %}
+      <select name="universite_provenance" id="universite_provenance" class="input-field">
+        <option value="" disabled selected>Sélectionnez une université</option>
+        {% for choix in universites %}
+        <option value="{{ choix.0 }}">{{ choix.1 }}</option>
+
+        {% endfor %}
+      </select>
+      {% if etudiant.errors.universite_provenance %}
+      <ul>
+        {% for error in etudiant.errors.universite_provenance %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      </br>
+      <input type="checkbox" class="check-box" id="chkAgree" onclick="goFurther()">I agree to the Terms & Conditions
+      <button type="submit" id="btnSubmit" class="submit-btn reg-btn"
+        style="position:absolute;left:-15px;">Register</button>
+
+    </form>
+    <a href="{% url 'home' %}"
+      style="position:absolute;bottom:30px;color:black;text-decoration:none;margin-left:60px;background: linear-gradient(to right, #FA4B37, #DF2771)">Retourner
+      sur la page d ' acceuil</a>
+
+  </div>
+  <script type="text/javascript" src="{% static 'script.js'%}"></script>
+</body>
+
+</html>

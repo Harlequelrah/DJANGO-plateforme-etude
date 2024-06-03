@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'cours.css' %}">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="title">
+    <span>Nos cours disponibles<br>sur LearnEd</span>
+    <div class="shortdesc">
+      <p>Nous mettons à votre disposition, chers étudiants, les cours régulièrement mis à jour et proposés par nos
+        professeurs agréés.</p>
+    </div>
+  </div>
+  <div class="course">
+    {% for module in modules %}
+    <span style="text-decoration:underline;text-align:center;">{{ module.nom }}</span>
+    <div class="cbox" style="margin-bottom:20px;">
+      {% for cours in module.cours.all %}
+      <div class="det"><a href="{% url 'coursdetail' etudiant_id cours.id %}">{{ cours.titre }}</a></div>
+      {% endfor %}
+    </div>
+
+    {% endfor %}
+
+  </div>
+
+
+</body>
+
+</html>

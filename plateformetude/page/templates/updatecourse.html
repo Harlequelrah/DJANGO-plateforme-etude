@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+  <link rel="shortcut icon" type="png" href="{% static 'icon/favicon.png' %}">
+  <title>Ajout d un nouveau cours</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'loginstyles.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <style>
+    #session_Debut::before {
+      content: "session debut  ex :{{enseigner.session_Debut}} |  ";
+      /* Texte par défaut à afficher */
+      color: rgba(0, 0, 0, 0.7);
+      /* Couleur du texte par défaut */
+      font-style: italic;
+      /* Style du texte par défaut */
+    }
+
+    #session_Fin::before {
+      content: "session fin  ex :{{enseigner.session_Fin}} |  ";
+      /* Texte par défaut à afficher */
+      color: rgba(0, 0, 0, 0.7);
+      /* Couleur du texte par défaut */
+      font-style: italic;
+      /* Style du texte par défaut */
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="form-box" style="height:630px;">
+    <h2
+      style="text-align:center;color:rgba(0,0,0);border-radius:5px;margin-top:30px;text-decoration:underline;background: linear-gradient(to right, #FA4B37, #DF2771)">
+      Formulaire de Modification d un cours</h2>
+    <form class="input-group" method="post" style="margin-left:60px;" validate>
+      {% csrf_token %}
+      <input type="text" name="titre" class="input-field" placeholder="Titre du cours :{{enseigner.cours.titre}} " >
+      {% if form.errors.titre %}
+      <ul>
+        {% for error in form.errors.titre %}
+        <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <input type="text" name="libelle" class="input-field" placeholder="libelle du cours :{{enseigner.cours.libelle}}" >
+      {% if form.errors.libelle %}
+      <ul>
+        {% for error in form.errors.libelle %}
+        <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <textarea class="input-field" placeholder="les données textuelles du cours::{{enseigner.cours.contenue_texte}}" name="contenue_texte"
+        ></textarea>
+      {% if form.errors.contenue_texte %}
+      <ul>
+        {% for error in form.errors.contenue_texte %}
+        <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <textarea class="input-field" placeholder="les liens pour les videos du cours :{{enseigner.cours.urls}}" name="urls"
+        ></textarea>
+      {% if form.errors.urls %}
+      <ul>
+        {% for error in form.errors.urls %}
+        <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <input type="number" name="id_Session" class="input-field" placeholder="ID de la session :{{enseigner.id_Session}}" >
+      {% if form.errors.id_Session %}
+      <ul>
+        {% for error in form.errors.id_Session %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <input type="date" name="session_Debut" id="session_Debut" class="input-field" placeholder="Date de début"
+        >
+      {% if form.errors.session_Debut %}
+      <ul>
+        {% for error in form.errors.session_Debut %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <input type="date" name="session_Fin" id="session_Fin" class="input-field" placeholder="Date de fin"
+        >
+      {% if form.errors.session_Fin %}
+      <ul>
+        {% for error in form.errors.session_Fin %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <input type="number" name="volume_Horaire" class="input-field" placeholder="Volume horaire :{{enseigner.volume_Horaire}}" >
+      {% if form.errors.volume_Horaire %}
+      <ul>
+        {% for error in form.errors.volume_Horaire %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <div style="display:flex;text-align:justify;justify-content:center;">
+        <button type="button" id="up" class="submit-btn reg-btn"
+          style="text-align:center;margin-top:10px;margin-left:5px;width:100px;background: lightgray;">Modifier</button>
+          <button type="submit" id="update" name="update" class="submit-btn reg-btn"
+          style="text-align:center;margin-top:2px;margin-left:5px;width:150px;background: green;display: none;">Valider
+          Modification</button>
+        <button type="button" id="del" class="submit-btn reg-btn"
+          style="text-align:center;margin-top:10px;margin-left:80px;width:120px;background: lightgray;">Supprimer</button>
+        <button type="submit" id="delete" name="delete" class="submit-btn reg-btn"
+          style="text-align:center;margin-top:2px;margin-left:80px;width:170px;background: red;display: none;">Valider
+          Suppression</button>
+      </div>
+    </form>
+  </div>
+  <script type="text/javascript" src="{% static 'script.js' %}"></script>
+  <script>
+    // Bouton de modification
+    const upButton = document.getElementById('up');
+    upButton.addEventListener('click', function () {
+      if (confirm('Voulez-vous vraiment modifier ce cours ?')) {
+        // Afficher le bouton de mise à jour
+        document.getElementById('update').style.display = 'inline';
+        document.getElementById('up').style.display = 'none';
+      }
+    });
+
+    // Bouton de suppression
+    const delButton = document.getElementById('del');
+    delButton.addEventListener('click', function () {
+      if (confirm('Voulez-vous vraiment supprimer ce cours ?')) {
+        // Afficher le bouton de suppression
+        document.getElementById('delete').style.display = 'inline';
+        document.getElementById('del').style.display = 'none';
+      }
+    });
+  </script>
+</body>
+
+</html>

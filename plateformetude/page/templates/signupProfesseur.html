@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+  <link rel="shortcut icon" type="png" href="{% static 'icon/favicon.png'%}">
+  <title>SignUp</title>
+  <link rel="stylesheet" type="text/css" href="{%static 'loginstyles.css'%}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- It will redirect to the Home Page after submitting the form -->
+
+  <style>
+    input[type="date"]::before {
+      content: "date de naissance ex : "; /* Texte par défaut à afficher */
+      color: rgba(0,0,0,0.7); /* Couleur du texte par défaut */
+      font-style: italic; /* Style du texte par défaut */
+    }
+    .expanded {
+      height: 600px;
+      /* ou toute autre valeur de hauteur souhaitée */
+      transition: height 0.5s ease;
+      /* ajoutez une transition pour une animation fluide */
+      width:400px;
+
+    }
+   #teacherBtn{
+      bottom:35px;
+      left:100px;
+    }
+    #teacherBtn:focus{
+    background-color:beige;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-box expanded" id="registrationFormBox" >
+    <div class="button-box" style="height:35px">
+      <div id="btn"></div>
+      <a href="{% url 'signupEtudiant' %}"><button type="button" class="toggle-btn" id="studentBtn"style="color: #fff;">Etudiant</button></a>
+				<button type="button" class="toggle-btn" id="teacherBtn" >Professeur</button>
+    </div>
+    <div class="social-icons">
+      <img src="{% static 'icon/fb2.png'%}">
+      <img src="{% static 'icon/insta2.png'%}">
+      <img src="{% static 'icon/tt2.png'%}">
+    </div>
+    <form method="post" style="position:absolute;left:80px;" class="input-group" validate>
+      {% csrf_token %}
+      <input type="text" class="input-field" placeholder="Entrer votre nom" name="nom" required="required">
+      {% if professeur.errors.nom %}
+      <ul>
+        {% for error in professeur.errors.nom %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+      <input type="text" class="input-field" placeholder="Entrer votre prenom" name="prenom" required="required">
+      {% if professeur.errors.prenom %}
+      <ul>
+        {% for error in professeur.errors.prenom %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+			<input type="email" class="input-field" placeholder="Entrer votre email" required="required" name="email">
+      {% if professeur.errors.email %}
+      <ul>
+        {% for error in professeur.errors.email %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+			<input type="password" class="input-field" placeholder="Entrer votre mot de passe" name="password" required="required">
+			<input type="password" class="input-field" placeholder="Confirmer votre mot de passe " name="password" required="required">
+      {% if professeur.errors.password %}
+      <ul>
+        {% for error in professeur.errors.password %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+      <input type="date" class="input-field"  name="date_naissance" >
+      {% if professeur.errors.date_naissance %}
+      <ul>
+        {% for error in professeur.errors.date_naissance %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+      <input type="checkbox" class="check-box" id="chkAgree" onclick="goFurther()">I agree to the Terms & Conditions
+      <button type="submit" id="btnSubmit" class="submit-btn reg-btn" style="position:absolute;left:-15px;">Register</button>
+    </form>
+    <a href="{% url 'home' %}" style="position:absolute;bottom:20px;color:black;text-decoration:none;margin-left:60px;background: linear-gradient(to right, #FA4B37, #DF2771)">Retourner sur la page d ' acceuil</a>
+
+  </div>
+  <script type="text/javascript" src="{% static 'script.js'%}"></script>
+</body>
+
+</html>
+
+
+
+
+
+

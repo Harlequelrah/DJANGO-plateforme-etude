@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <link rel="shortcut icon" type="png" href="{% static 'icon/favicon.png' %}">
+    <title>Liste des cours</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'cours.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'loginstyles.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="course">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li align="center" {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <div class="cbox" style="display:inline-block">
+            {% comment %} {% for enseigner in enseigners%} {% endcomment %}
+            {% for cours in courses%}
+            <div style="display:flex">
+                <div class="det"><a href="{% url 'updatecourse' professeur.id cours.id %}" id="">{{cours.titre}}</a>
+                </div>
+                <button id="addmodule{{cours.id}}" type="button"
+                    style="margin-top:20px;height:40px;border-radius:8px;background: linear-gradient(to right, #FA4B37, #DF2771);">Ajouter
+                    à un module</button>
+                <div id="formulaire{{cours.id}}" style="display:none;">
+                    <form method="post" validate style="display:flex;">
+                        {% csrf_token %}
+                        <input name="cours" type="number" style="display:none" value="{{cours.id}}" />
+                        <select style="margin-top:20px;" name="modules" id="modules" class="input-field">
+                            <option value="" disabled selected>Sélectionnez un module</option>
+                            {% for mod in modules %}
+                            <option value="{{ mod.id }}">{{ mod.nom }}</option>
+                            {% endfor %}
+                        </select>
+                        <button  type="submit" id="submitbutton"
+                        style="margin-left:30px;margin-top:20px;height:40px;border-radius:8px;background: linear-gradient(to right, #FA4B37, #DF2771);">Valide</button>
+                    </form>
+                </div>
+
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        {% for cours in courses %}
+        $(document).ready(function () {
+            $('#addmodule{{cours.id}}').on('click', function () {
+                // Logique à exécuter lorsque le bouton est cliqué
+                // Par exemple, changer le texte du bouton
+                $(this).hide();
+                $(this).css("background-color:red;");
+                $('#formulaire{{cours.id}}').show();
+
+
+            });
+        });
+        {% endfor %}
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <link rel="shortcut icon" type="png" href="{% static 'icon/favicon.png' %}">
+    <title>Liste des cours</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'cours.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'loginstyles.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="title"
+        style="border-radius:8px;text-align:justify;justify-content:center;position:absolute;top:-145px;left:350px;background: linear-gradient(to right, #FA4B37, #DF2771);width:325px;height:170px;">
+        <span style="margin-left:50px;text-decoration:underline">{{cours.titre}}</span>
+        <div class="shortdesc">
+            <p align="center">{{cours.libelle}}</p>
+        </div>
+    </div>
+    <div style="display:inline-block;">
+        <div class="form-box expanded" style="margin-top:200px; width:auto;height:auto">
+            <h4 align="center" style="background: linear-gradient(to right, #FA4B37, #DF2771)">Cours </h4>
+            <p>
+                {{cours.contenue_texte}}
+            </p>
+        </div>
+        <div class="course" style="display:inline-block;position:relative;top:100px;">
+            <h4 align="center" style="background: linear-sgradient(to right, #FA4B37, #DF2771)">Liens du cours </h4>
+            <div class="cbox" style="display:inline-block">
+
+                {% for url in cours.get_urls%}
+                <div class="det"><a href="url">{{url}}</a></div>
+                {% endfor %}
+            </div>
+        </div>
+        <div style="display:flex;margin-top:80px;">
+            {% for enseigner in enseigners %}
+            <div class="form-box expanded" style=" width:auto;height:auto">
+                <span>session: {{enseigner.id_Session}}</span></br>
+                <span>nom du professeur :{{enseigner.professeur.nom}}</span></br>
+                <span>volume Horaire :{{enseigner.volume_Horaire}}</span></br>
+                <span>session debut:{{enseigner.session_Debut}}</span></br>
+                <span>session fin :{{enseigner.session_Fin}}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <form method="post" style="margin-top:25px;">
+            {% csrf_token %}
+            <!-- Vos champs de formulaire ici -->
+            <label style="color:white" for="enseigner_id">Selectionner la session</label>
+            <select name="id_Session" id="enseigner_id">
+                {% for enseigner in enseigners %}
+                <option value="{{enseigner.id_Session}}">{{enseigner.id_Session}}</option>
+                {% endfor %}
+            </select>
+                <div class=" course">
+        <div class="cbox">
+            <div class="det"><a href="{% url 'cours' etudiant_id%}">Retour</a></div>
+            <div class="det"><a href="#"><button type="sumbit"
+                        style="background:white;border: none; outline: none;">S'Inscrire</button></a></div>
+        </div>
+        </div>
+
+
+    </form>
+
+    </div>
+
+
+
+
+
+</body>
+
+</html>
